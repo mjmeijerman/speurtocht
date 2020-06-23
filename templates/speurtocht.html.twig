@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <img src="{{ asset(location.pictureLocation) }}" width="300px"/>
+    {% if location.uploadedPictureLocation %}
+        <p>Jullie hebben de plek gevonden, goed gedaan en mooie foto!</p>
+        <img src="{{ asset(location.uploadedPictureLocation) }}" width="300px"/>
+        <p>{{ location.assignment }}</p>
+        <form method="post">
+            <label for="answer"></label>
+            <input type="text" name="answer" id="answer" required>
+            <br/><br/>
+            <input type="submit" value="Verstuur!" name="submit">
+        </form>
+    {% else %}
+        <p>Ga in het zuiderpark op zoek naar waar deze foto gemaakt is.</p>
+        <form method="post" enctype="multipart/form-data">
+            <label for="picture">Als je de plek gevonden hebt maak je een zo origineel mogelijke foto en die upload je hier</label>
+            <input type="file" name="picture" id="picture" required>
+            <br/><br/>
+            <input type="submit" value="Upload foto!" name="submit">
+        </form>
+    {% endif %}
+{% endblock %}

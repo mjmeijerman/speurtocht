@@ -42,6 +42,18 @@ final class GroupRouteLocation
         return $self;
     }
 
+    public function uploadFile(string $fileName): void
+    {
+        $this->uploadedPictureLocation = $fileName;
+        $this->uploadedAt              = new DateTimeImmutable();
+    }
+
+    public function answerAssignment(string $assignmentAnswer): void
+    {
+        $this->assignmentAnswer      = $assignmentAnswer;
+        $this->assignmentCompletedAt = new DateTimeImmutable();
+    }
+
     public function compare(GroupRouteLocation $other): int
     {
         return ($this->order > $other->order()) ? 1 : -1;

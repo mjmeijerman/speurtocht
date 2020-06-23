@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('startSpeurtocht', { 'groupName': app.request.get('groupName') }) }}">Start!</a>
+{% endblock %}

@@ -8,6 +8,7 @@ use App\Entity\GroupRouteLocation;
 use App\Entity\GroupRouteLocations;
 use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Types\Types;
 use PDO;
 
 final class DbalGroupRouteLocationRepository
@@ -53,6 +54,54 @@ final class DbalGroupRouteLocationRepository
         );
     }
 
+    public function markStartedForGroup(string $groupName): void
+    {
+        $this->connection->createQueryBuilder()
+            ->update('`group`')
+            ->set('start_time', ':startTime')
+            ->where('name = :groupName')
+            ->setParameter('startTime', new DateTimeImmutable(), Types::DATETIME_IMMUTABLE)
+            ->setParameter('groupName', strtolower($groupName))
+            ->execute();
+    }
+
+    public function markEndedForGroup(string $groupName): void
+    {
+        $this->connection->createQueryBuilder()
+            ->update('`group`')
+            ->set('end_time', ':endTime')
+            ->where('name = :groupName')
+            ->setParameter('endTime', new DateTimeImmutable(), Types::DATETIME_IMMUTABLE)
+            ->setParameter('groupName', strtolower($groupName))
+            ->execute();
+    }
+
+    public function updatePictureUpload(GroupRouteLocation $location): void
+    {
+        $this->connection->createQueryBuilder()
+            ->update('`group_route`')
+            ->set('uploaded_picture_file_name', ':uploadedPictureFileName')
+            ->set('uploaded_picture_at', ':uploadedPictureAt')
+            ->where('id = :id')
+            ->setParameter('id', $location->id())
+            ->setParameter('uploadedPictureFileName', $location->uploadedPictureLocation())
+            ->setParameter('uploadedPictureAt', $location->uploadedAt(), Types::DATETIME_IMMUTABLE)
+            ->execute();
+    }
+
+    public function updateAssignmentAnswer(GroupRouteLocation $location): void
+    {
+        $this->connection->createQueryBuilder()
+            ->update('`group_route`')
+            ->set('assignment_result', ':assignmentResult')
+            ->set('assignment_completed_at', ':assignmentCompletedAt')
+            ->where('id = :id')
+            ->setParameter('id', $location->id())
+            ->setParameter('assignmentResult', $location->assignmentAnswer())
+            ->setParameter('assignmentCompletedAt', $location->assignmentCompletedAt(), Types::DATETIME_IMMUTABLE)
+            ->execute();
+    }
+
     private function hydrateGroupRouteLocation(array $row): GroupRouteLocation
     {
         return GroupRouteLocation::createFromDataSource(
@@ -63,7 +112,7 @@ final class DbalGroupRouteLocationRepository
             $row['uploaded_picture_at'] ? new DateTimeImmutable($row['uploaded_picture_at']) : null,
             $row['assignment'],
             $row['assignment_result'] ?: null,
-            $row['uploaded_picture_at'] ? new DateTimeImmutable($row['assignment_completed_at']) : null
+            $row['assignment_completed_at'] ? new DateTimeImmutable($row['assignment_completed_at']) : null
         );
     }
 }
