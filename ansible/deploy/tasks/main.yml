@@ -1,0 +1,4 @@
+---
+
+- name: Restart php-fpm
+  shell: sudo /usr/sbin/service php7.4-fpm restart
