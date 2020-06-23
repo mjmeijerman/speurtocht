@@ -40,6 +40,33 @@ final class GroupRouteLocations implements IteratorAggregate
         return $self;
     }
 
+    public function totalTime(): string
+    {
+        $diff = $this->endTime->diff($this->startTime);
+
+        return $diff->h . ' uur, ' . $diff->i . ' minuten en ' . $diff->s . ' seconden';
+    }
+
+    public function calculateWalkingTimes(): void
+    {
+        /** @var GroupRouteLocation|null $previous */
+        $previous = null;
+        foreach ($this->groupRouteLocations as $groupRouteLocation) {
+            if (!$previous) {
+                $groupRouteLocation->setWalkTime($groupRouteLocation->uploadedAt()->diff($this->startTime));
+
+                $previous = $groupRouteLocation;
+                continue;
+            }
+
+            $groupRouteLocation->setWalkTime(
+                $groupRouteLocation->uploadedAt()->diff($previous->assignmentCompletedAt())
+            );
+
+            $previous = $groupRouteLocation;
+        }
+    }
+
     public function findFirstUnfinished(): ?GroupRouteLocation
     {
         foreach ($this->groupRouteLocations as $groupRouteLocation) {

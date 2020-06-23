@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use DateInterval;
 use DateTimeImmutable;
 
 final class GroupRouteLocation
@@ -16,6 +17,7 @@ final class GroupRouteLocation
     private string $assignment;
     private ?string $assignmentAnswer;
     private ?DateTimeImmutable $assignmentCompletedAt;
+    private ?string $walkTime;
 
     public static function createFromDataSource(
         int $id,
@@ -40,6 +42,23 @@ final class GroupRouteLocation
         $self->assignmentCompletedAt   = $assignmentCompletedAt;
 
         return $self;
+    }
+
+    public function setWalkTime(DateInterval $diff): void
+    {
+        $this->walkTime = $diff->i . ' minuten en ' . $diff->s . ' seconden';
+    }
+
+    public function walkTime(): ?string
+    {
+        return $this->walkTime;
+    }
+
+    public function assignmentDuration(): string
+    {
+        $diff = $this->assignmentCompletedAt->diff($this->uploadedAt);
+
+        return $diff->i . ' minuten en ' . $diff->s . ' seconden';
     }
 
     public function uploadFile(string $fileName): void

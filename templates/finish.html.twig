@@ -1,4 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1>Klaar!</h1>
+    Jullie zijn klaar met alle opdrachten, goed gedaan! Jullie hebben er in totaal <b>{{ groupRouteLocations.totalTime }}</b> over gedaan.
+    {% for location in groupRouteLocations %}
+        <h2>Locatie {{ location.order }}</h2>
+        <p>Jullie hebben er <b>{{ location.walkTime }}</b> minuten over gedaan om hier naartoe te lopen</p>
+        <img src="{{ asset(location.uploadedPictureLocation) }}" width="300px"/>
+        <p>Jullie hebben er <b>{{ location.assignmentDuration }}</b> over gedaan om de opdracht te doen</p>
+        <p>Opdracht: {{ location.assignment }}</p>
+        <p>Jullie antwoord: {{ location.assignmentAnswer }}</p>
+    {% endfor %}
 {% endblock %}

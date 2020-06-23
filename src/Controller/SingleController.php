@@ -123,6 +123,8 @@ final class SingleController
             $this->groupRouteLocationRepository->markEndedForGroup($groupName);
         }
 
-        return new Response($this->twig->render('finish.html.twig'));
+        $groupRouteLocations->calculateWalkingTimes();
+
+        return new Response($this->twig->render('finish.html.twig', ['groupRouteLocations' => $groupRouteLocations]));
     }
 }
