@@ -64,6 +64,6 @@ project_has_npm: no
 project_copy_previous_npm_modules: no
 
 project_clean: true
-project_keep_releases: 3
+project_keep_releases: 1
 
 application_root: /home/deploy/speurtocht.markmeijerman.nl

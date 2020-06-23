@@ -50,14 +50,14 @@ EOQ
             <<<EOQ
 INSERT INTO `location` (`id`, `picture_file_name`, `assignment`)
 VALUES
-	(1, 'uploads/zuiderpark_theater.jpg', 'Zuiderparktheater'),
-	(2, 'uploads/skatepark.jpg', 'Skatepark'),
-	(3, 'uploads/otensien.jpg', 'Ot en Sien speeltuin'),
-	(4, 'uploads/atletiek.jpg', 'Atletiek'),
-	(5, 'uploads/western_speeltuin.jpg', 'Western speeltuin'),
-	(6, 'uploads/zwembad.jpg', 'Zwembad'),
-	(7, 'uploads/herten.jpg', 'Herten'),
-	(8, 'uploads/waterspeeltuin.jpg', 'Waterspeeltuin');
+	(1, 'static/zuiderpark_theater.jpg', 'Zuiderparktheater'),
+	(2, 'static/skatepark.jpg', 'Skatepark'),
+	(3, 'static/otensien.jpg', 'Ot en Sien speeltuin'),
+	(4, 'static/atletiek.jpg', 'Atletiek'),
+	(5, 'static/western_speeltuin.jpg', 'Western speeltuin'),
+	(6, 'static/zwembad.jpg', 'Zwembad'),
+	(7, 'static/herten.jpg', 'Herten'),
+	(8, 'static/waterspeeltuin.jpg', 'Waterspeeltuin');
 EOQ
         );
     }
