@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Hallo
+    <p><a href="{{ path('speurtocht', {'groupName': 'Nour'}) }}">Groepje Nour</a></p>
+    <p><a href="{{ path('speurtocht', {'groupName': 'Mark'}) }}">Groepje Mark</a></p>
 {% endblock %}
