@@ -45,7 +45,7 @@ final class SingleController
      * @Route("/{groupName}", name="speurtocht", methods={"GET", "POST"})
      */
     public function speurtocht(Request $request, string $groupName): Response
-    {
+    {;
         if ($request->getMethod() === Request::METHOD_POST) {
             $groupRouteLocations = $this->groupRouteLocationRepository->findAllForGroup($groupName);
             $location            = $groupRouteLocations->findFirstUnfinished();
@@ -123,6 +123,7 @@ final class SingleController
             $this->groupRouteLocationRepository->markEndedForGroup($groupName);
         }
 
+        $groupRouteLocations = $this->groupRouteLocationRepository->findAllForGroup($groupName);
         $groupRouteLocations->calculateWalkingTimes();
 
         return new Response($this->twig->render('finish.html.twig', ['groupRouteLocations' => $groupRouteLocations]));

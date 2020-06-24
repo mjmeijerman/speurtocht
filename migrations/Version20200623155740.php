@@ -50,14 +50,14 @@ EOQ
             <<<EOQ
 INSERT INTO `location` (`id`, `picture_file_name`, `assignment`)
 VALUES
-	(1, 'static/zuiderpark_theater.jpg', 'Zuiderparktheater'),
-	(2, 'static/skatepark.jpg', 'Skatepark'),
-	(3, 'static/otensien.jpg', 'Ot en Sien speeltuin'),
-	(4, 'static/atletiek.jpg', 'Atletiek'),
-	(5, 'static/western_speeltuin.jpg', 'Western speeltuin'),
-	(6, 'static/zwembad.jpg', 'Zwembad'),
-	(7, 'static/herten.jpg', 'Herten'),
-	(8, 'static/waterspeeltuin.jpg', 'Waterspeeltuin');
+	(1, 'static/zuiderpark_theater.png', 'Gooi een theezakje van een zo groot mogelijke afstand in een mok'),
+	(2, 'static/skatepark.png', 'Maak een filmpje wat er heel indrukwekkend uitziet als je het filmpje achteruit afspeelt'),
+	(3, 'static/otensien.png', 'Ga liggen of zitten met je ogen dicht. Sta op na precies 50 seconden'),
+	(4, 'static/atletiek.png', 'Eet binnen 1 minuut zoveel mogelijk watermeloen'),
+	(5, 'static/western_speeltuin.png', 'Gooi een ei zo hoog mogelijk in de lucht en vang hem weer op zonder dat deze kapot gaat'),
+	(6, 'static/zwembad.png', 'Maak een piramide met minimaal 1 persoon in handstand. De handen van die persoon mogen niet op de grond staan.'),
+	(7, 'static/herten.png', 'Tel het aantal rijstkorrels dat in het zakje zitten'),
+	(8, 'static/waterspeeltuin.png', 'Vul de mok met water zonder hem aan te raken (Zet de mok niet vlakbij het water neer)');
 EOQ
         );
     }

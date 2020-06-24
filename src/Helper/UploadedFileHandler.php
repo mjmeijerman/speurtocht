@@ -29,7 +29,7 @@ final class UploadedFileHandler
             throw new \LogicException('Het bestand moet een foto zijn');
         }
 
-        $fileName = time() . '.' . $file->guessExtension();
+        $fileName = uniqid() . '.' . $file->guessExtension();
         $file->move($this->storageLocation, $fileName);
 
         return $this->storageLocation . $fileName;
